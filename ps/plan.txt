@@ -1,0 +1,56 @@
+1-misc-complexity
+2-search tech.
+3-dp
+4-graph
+5-math (inclusionExclusion) prob I
+5.1 - geo-ternary search -game theory(nim game)-(bit mask)
+6-d.s(rmq in o(1)(LCA) sparse table),misc_algo-greedy 
+7-string pross.
+
+
+m4akl dp
+dp(bit mask(bit mask2)-prob -23:26,30) 
+
+graph( 3 )
+etour1
+disjoint sets 1
+2sat
+
+self_learning 
+min_edge_coverage,max_independant_set-Min cost bipartite matching by Hungarian -(Min Cost Max Flow whith Dijkstra with potentials or SPFA)
+augmenting path - Maximum bipartite matching
+LCA
+Count paths(i,j) using floyd or matrix power and solve (125 UVA)
+
+- Minimum mean (average) cost cycle
+
+math
+catlan num
+read books (pic in math folder) - solve C,D
+PascalTriangle
+http://www.cut-the-knot.org/arithmetic/combinatorics/PascalTriangleProperties.shtml
+Bell num
+https://en.wikipedia.org/wiki/Bell_number#Summation_formulas
+Permutation & Combination videos
+https://www.youtube.com/watch?v=aLbh7jE8xdE&index=1&list=PLFp56HbJTNIubVF6FxHFFJPjaZvuPIdmm
+Pigeonhole-Principle
+https://www.quora.com/What-is-the-best-question-that-you-have-ever-faced-on-the-Pigeonhole-Principle
+Nim prof
+
+
+self_learning 
+Stirling numbers of the first kind
+	Number of permutations of n elements with k permutation cycles.
+	Has a nice recurrence to implement. See wikipedia
+
+
+for ecpc
+all scanf stuf %lld w kda
+printf("Problem %d: %.2f to %.2f\n", cc++, c1/100.0, c2/100);//to approxmate 
+rag3 el graph
+watch tips 
+
+
+m4akl math
+vid 7,8,10,11,12
+

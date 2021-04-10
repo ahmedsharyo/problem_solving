@@ -1,0 +1,11 @@
+ Counting the number of ways to distribute identical items to different people
+k= #of* or items, n=#of groups or" people in this case"
+(k+n-1)C(n-1)
+
+/////////////////////////////////////////////////////////////////////////////////
+
+
+***|***|*
+
+(k+r)C(r) r=#of '|' , here r=n-1 (#of groups-1)
+

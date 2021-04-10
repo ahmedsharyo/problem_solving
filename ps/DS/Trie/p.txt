@@ -1,0 +1,2 @@
+//Problems: SPOJ(PHONELST, CHOCOLA, MORSE, PRHYME, DICT), Live Archive(5792), UVA(12526), CF271D-D2
+//http://codeforces.com/gym/100935/problem/F

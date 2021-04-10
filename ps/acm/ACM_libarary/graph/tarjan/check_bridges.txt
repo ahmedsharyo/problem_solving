@@ -1,0 +1,141 @@
+#include<bits/stdc++.h>
+#include <ext/numeric>
+using namespace std;
+using namespace __gnu_cxx;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = 3.14159265358979323846;
+char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char dig[10]= {'0','1','2','3','4','5','6','7','8','9'};
+void fastInOut();
+int dx[] = { 0, 1, -1,  0, -1, 1,-1, 1};
+int dy[] = { 1, 0,  0, -1, -1, 1, 1,-1};
+int MOD=(int)1e9+7;
+const int N=(int)1e3+5;
+ll oo=(ll)1e18;
+int inf=2e9;
+#define x first
+#define y second
+#define  pb  push_back
+typedef bitset<20>Mask;
+struct node
+{
+    int x,y,c;
+};
+node a[25];
+ll memo[20][1<<20];
+int n,m;
+const int MAXN = 20;
+int adjMat[MAXN][MAXN];
+int low[MAXN], dfn[MAXN],vis[MAXN], ndfn;
+bool check_bridges(int i, int p) //check if bridges exist
+{
+    low[i] = dfn[i] = ++ndfn;
+    for (int j = 0; j < n; j++) if (adjMat[i][j] && j != p)
+        {
+            if (dfn[j] == 0)
+            {
+               if(check_bridges(j, i)) return 1;
+                if( low[j] > dfn[i]) return 1;
+                 low[i] = min(low[i],low[j]);
+            }
+            else
+                low[i] = min(low[i], dfn[j]);
+        }
+    return 0;
+}
+
+
+bool valid(Mask ma)
+{
+    ndfn=0;
+    for(int i=0; i<n; i++)
+    {
+        low[i]=-1,dfn[i]=vis[i]=0;
+        for(int j=0; j<n; j++)
+        {
+            adjMat[i][j]=0;
+        }
+    }
+    int nodes=0;
+    for(int i=0; i<m; i++)
+    {
+        if(ma[i])
+        {
+            adjMat[a[i].x][a[i].y]=adjMat[a[i].y][a[i].x]=1;
+            if(!vis[a[i].x])
+            {
+                nodes++;
+                vis[a[i].x]=1;
+            }
+            if(!vis[a[i].y])
+            {
+                nodes++;
+                vis[a[i].y]=1;
+            }
+        }
+    }
+    if(nodes!=n)return 0;
+     bool frist=1;
+    for(int i=0; i<n; i++)
+    {
+        if(!dfn[i])
+        {
+            if(!frist)return 0;
+            frist=0;
+            bool b= check_bridges(i,-1);
+            if(b)return 0;
+        }
+
+    }
+//    for(int i=0; i<m; i++)
+//    {
+//        if(ma[i])
+//        {
+//            cout<<a[i].x+1<<" "<<a[i].y+1<<" ";
+//        }
+//    }
+//    cout<<endl<<"*******"<<endl;
+    return 1;
+}
+ll solve(int i,Mask ma )
+{
+    if(i==m)
+    {
+        if(valid(ma))return 0;
+        else return inf;
+    }
+    ll &ret=memo[i][ma.to_ulong()];
+    if(ret!=-1)return ret;
+    ret=0;
+    ret=solve(i+1,ma);
+    ma[i]=1;
+    ret=min(ret,solve(i+1,ma)+a[i].c);
+    return ret;
+}
+int main()
+{
+//#ifndef ONLINE_JUDGE
+    //freopen("out.txt", "wt", stdout);
+//#endif
+    fastInOut();
+    int c,u,v,t=1;
+    while(cin>>n>>m&&(n+m))
+    {
+        memset(memo,-1,sizeof memo);
+        for(int i=0; i<m; i++)
+        {
+            cin>>u>>v>>c;
+            a[i].x=u-1,a[i].y=v-1,a[i].c=c;
+        }
+        int res= solve(0,0);
+        if(res>=inf)cout<<"There is no reliable net possible for test case "<<t++<<"."<<endl;
+        else cout<<"The minimal cost for test case "<<t++<<" is "<<res<<"."<<endl;
+    }
+}
+
+void fastInOut()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL), cout.tie(NULL);
+}

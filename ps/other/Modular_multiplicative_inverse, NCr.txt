@@ -1,0 +1,51 @@
+int factorial [N];
+ll power(ll a, ll b, ll mod){
+	ll x = 1, y = a;
+	while (b > 0){
+		if (b%2){
+		   x = (x*y)%mod;
+		}
+		y = (y*y)%mod;
+		b /= 2;
+	}
+     return x%mod;
+}	
+ 
+ll modular_inverse(ll n, ll mod){
+	return power(n, mod-2, mod);
+}
+ 
+ll nCr(ll n, ll k, ll mod){
+	if(n<k)return 0;
+	if(n==k)return 1; 
+	return (factorial[n]*( (modular_inverse(factorial[k],mod)*modular_inverse(factorial[n-k],mod) )%mod ) )%mod;
+}
+void precalc_fact(int mod)
+{
+	factorial[0]=1;
+	for(int i=1;i<N;i++)
+	{
+		factorial[i]=(factorial[i-1]%mod*i%mod)%mod;
+	}
+}
+
+
+
+////////////////
+
+long long ncr[1004][1004];
+
+void calcncr()
+{
+  for(int i = 0; i <= 1000; i++)
+  {
+    ncr[i][0] = 1;
+  }
+  for(int i = 1; i <= 1000; i++)
+  {
+    for(int j = 1; j <= 1000; j++)
+    {
+      ncr[i][j] = (ncr[i-1][j-1] + ncr[i-1][j])%MOD;
+    }
+  }
+}

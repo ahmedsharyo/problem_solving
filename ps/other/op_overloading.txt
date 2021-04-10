@@ -1,0 +1,7 @@
+struct Node{
+	int x,y,i;
+};
+bool operator<(const Node& lhs, const Node& rhs)
+{
+    return std::tie(lhs.x, lhs.y, lhs.i) < std::tie(rhs.x, rhs.y, rhs.i);
+}

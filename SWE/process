@@ -1,0 +1,7 @@
+0) sys design : elements like (modules, components and their interfaces) - architecture - data, data flow - priority 
+* focus on scalablity (non func. req.) * 
+
+1) use case diagram : actors - actions  
+(func. req.)
+
+2) class diagram  * focus on scalablity *

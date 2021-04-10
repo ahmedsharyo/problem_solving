@@ -1,0 +1,7 @@
+
+https://www.hackerrank.com/challenges/olap-operation-types-2/forum
+https://www.youtube.com/watch?v=FKSSOpQe5Jc
+
+-- Group BY:    a*b*c  
+-- WITH ROLLUP: a*b*c + (a*b)             + (a)     + 1
+-- WITH CUBE:   a*b*c + (a*b + a*c + b*c) + (a+b+c) + 1

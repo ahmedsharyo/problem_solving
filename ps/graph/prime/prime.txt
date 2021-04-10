@@ -1,0 +1,96 @@
+#include<bits/stdc++.h>
+#include <ext/numeric>
+using namespace std;
+using namespace __gnu_cxx;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = 3.14159265358979323846;
+char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char dig[10]= {'0','1','2','3','4','5','6','7','8','9'};
+void fastInOut();
+int dx[] = { 0, 1, -1,  0, -1, 1,-1, 1};
+int dy[] = { 1, 0,  0, -1, -1, 1, 1,-1};
+int MOD=(int)1e9+7;
+const int N=(int)1e2+5;
+ll oo=(ll)1e18;
+int inf=2e9;
+#define x first
+#define y second
+#define  pb  push_back
+struct Node
+{
+    float x,y;
+    float c;
+};
+float t,n,u,v;
+Node b[N];
+map<pair<float,float>,vector<Node> >a;
+map<pair<float,float>,bool >vis;
+pair<float,float> st;
+double prime()
+{
+    vis.clear();
+    pair<float,pair<float,float> >cur ,tmp;
+    pair<float,float>temp;
+    set<pair<float, pair<float,float> > >q;
+    cur= {0,st};
+    q.insert(cur);
+    double cost=0;
+    while(!q.empty())
+    {
+        cur=*q.begin();
+        q.erase(q.begin());
+        temp= {cur.y.x,cur.y.y};
+        if(vis[temp])continue;
+        vis[temp]=1;
+        cost+=cur.x;
+      //  cout<<cur.x<<" "<<cost<<endl;
+        for(auto i:a[cur.y])
+        {
+            temp= {i.x,i.y};
+            if(!vis[temp])
+            {
+
+                //cout<<temp.x<<" "<<temp.y<<endl;
+                tmp= {i.c,temp};
+                q.insert(tmp);
+            }
+        }
+
+    }
+    return cost;
+
+}
+int main()
+{
+//#ifndef ONLINE_JUDGE
+     freopen("out.txt", "wt", stdout);
+//#endif
+    fastInOut();
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        for(int i=0; i<n; i++)
+            cin>>b[i].x>>b[i].y;
+
+        for(int i=0; i<n; i++)
+            for(int j=0; j<n; j++)
+            {
+                Node tmp;
+                tmp.x=b[j].x,tmp.y=b[j].y,tmp.c = sqrt((b[i].x-b[j].x)*(b[i].x-b[j].x)+(b[i].y-b[j].y)*(b[i].y-b[j].y));
+                //       cout<<b[i].x<<" "<<b[i].y<<" * "<<b[j].x<<" "<<b[j].y<<" "<<tmp.c<<endl;
+                a[ {b[i].x,b[i].y}].pb(tmp);
+                st= {b[i].x,b[i].y};
+            }
+        cout<<setprecision(2)<<fixed<<prime()<<endl;
+        a.clear();
+        if(t)cout<<endl;
+    }
+}
+
+void fastInOut()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL), cout.tie(NULL);
+}

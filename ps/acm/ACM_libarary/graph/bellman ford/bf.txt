@@ -1,0 +1,81 @@
+#include<bits/stdc++.h>
+#include <ext/numeric>
+using namespace std;
+using namespace __gnu_cxx;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = 3.14159265358979323846;
+char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char dig[10]= {'0','1','2','3','4','5','6','7','8','9'};
+void fastInOut();
+int dx[] = { 0, 1, -1,  0, -1, 1,-1, 1};
+int dy[] = { 1, 0,  0, -1, -1, 1, 1,-1};
+int MOD=(int)1e9+7;
+const int N=(int)1e3+5;
+ll oo=(ll)1e18;
+int inf=2e9;
+#define t first
+#define d second
+#define  pb  push_back
+int n,m,t,u,v;
+ll d[N];
+struct edge
+{
+    int x,y,c;
+};
+vector<edge>a;
+
+bool Bf()
+{
+    for(int i=0;i<=n;i++)d[i]=inf;
+    d[0]=0;
+    bool r=0;
+    for(int i=0;i<n;i++)
+    {
+        r=0;
+     for(int j=0;j<a.size();j++)
+     {
+         if(d[a[j].y]>d[a[j].x]+a[j].c)
+         {
+             r=1;
+             d[a[j].y]=d[a[j].x]+a[j].c;
+             if(i==n-1)
+                 return 1;
+         }
+     }
+     if(r==0)
+        break;
+    }
+    return 0;
+}
+int main()
+{
+//#ifndef ONLINE_JUDGE
+//    freopen("Bumble.in", "r", stdin);
+//#endif
+    //fastInOut();
+    int ts;
+    cin>>ts;
+
+    while(ts--)
+    {
+        cin>>n>>m;
+
+        for(int i=0;i<m;i++)
+        {
+            cin>>u>>v>>t;
+            edge e;
+            e.c=t,e.x=u,e.y=v;
+            a.pb(e);
+        }
+    if(Bf())cout<<"possible"<<endl;
+    else cout<<"not possible"<<endl;
+    a.clear();
+    }
+}
+
+void fastInOut()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL), cout.tie(NULL);
+}

@@ -1,0 +1,47 @@
+bool check(long long  m)
+{
+    
+}
+
+
+//data validation search space like: 0000000000000000000011111111111111111111111111
+//or sorted int space  12359 
+long long  binary_search()        
+{
+    long long  s = , e = , ret=-1;
+    
+    while(s <= e)
+    {
+        long long  mid = (s + e)/2;
+        if(check(mid))
+            e = mid - 1 , ret = mid;
+        else
+            s = mid + 1;
+    }
+    return ret;
+}
+
+// upper_bound
+// vector<int> &v "sorted"
+int up(vector<int> &v, int num) {  
+	int lo = 0, hi = sz(v) - 1;
+	while (lo <= hi) {
+		int mid = (lo + hi) / 2;
+		if (v[mid] <= num) lo = mid + 1;
+		else if (v[mid] > num) hi = mid - 1;
+ 	}
+	if (lo >= sz(v)) return -1;
+	return v[lo];
+}
+// lower_bound
+// vector<int> &v "sorted"
+int lo(vector<int> &v, int num) {
+	int lo = 0, hi = sz(v) - 1;
+	while (lo <= hi) {
+		int mid = (lo + hi) / 2;
+		if (v[mid] < num) lo = mid + 1;
+		else if (v[mid] >= num) hi = mid - 1;
+	}
+	if (hi < 0) return -1;
+	return v[hi];
+}

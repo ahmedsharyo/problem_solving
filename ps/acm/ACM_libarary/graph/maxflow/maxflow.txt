@@ -1,0 +1,91 @@
+#include<bits/stdc++.h>
+#include <ext/numeric>
+using namespace std;
+using namespace __gnu_cxx;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = 3.14159265358979323846;
+char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char dig[10]= {'0','1','2','3','4','5','6','7','8','9'};
+void fastInOut();
+int dx[] = { 0, 1, -1,  0, -1, 1,-1, 1};
+int dy[] = { 1, 0,  0, -1, -1, 1, 1,-1};
+int MOD=(int)1e9+7;
+const int N=(int)5e2+5;
+ll oo=(ll)1e18;
+int inf=2e9;
+#define x first
+#define y second
+#define  pb  push_back
+int cap[N][N],n;
+int path[N],vis[N],pathlen;
+
+int getpath(int src,int trg,int curlen,int maxcap)
+{
+    path[curlen]=src;
+    if(src==trg)
+    {
+       pathlen=curlen+1;
+       return  maxcap;
+    }
+    int ret=0;
+    vis[src]=1;
+    for(int i=1;i<=n;i++)
+    {
+        if(vis[i]||cap[src][i]<=0)continue;
+
+      ret=getpath(i,trg,curlen+1,min(maxcap,cap[src][i]));
+      if(ret>0)break;
+    }
+    return ret;
+}
+int maxflow(int src,int sink)
+{
+    int totalflow=0;
+    while(1)
+    {
+        memset(vis,0,sizeof vis);
+        int newflow=getpath(src,sink,0,INT_MAX);
+        if(!newflow)break;
+        bool ch=0;
+        for(int i=1;i<pathlen;i++)
+        {
+            int u=path[i-1],v=path[i];
+            cap[u][v]-=newflow;
+            cap[v][u]+=newflow;
+
+        }
+        totalflow+=newflow;
+    }
+    return totalflow;
+}
+int main()
+{
+//#ifndef ONLINE_JUDGE
+    //freopen("out.txt", "wt", stdout);
+//#endif
+    fastInOut();
+   int m,t=1,u,v,c,s,d;
+   while(cin>>n&&n)
+   {
+       cin>>s>>d>>m;
+       res.clear();
+       memset(cap,0,sizeof cap);
+       for(int i=0;i<m;i++)
+       {
+           cin>>u>>v>>c;
+           cap[u][v]+=c;//There might be more than one connection between a pair of nodes
+           cap[v][u]+=c;
+       }
+       cout<<"Network "<<t++<<endl;
+       cout<<"The bandwidth is "<<maxflow(s,d)<<"."<<endl;
+             cout<<endl;
+
+   }
+}
+
+void fastInOut()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL), cout.tie(NULL);
+}

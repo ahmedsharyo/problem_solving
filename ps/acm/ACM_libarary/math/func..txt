@@ -1,0 +1,56 @@
+int gcd(int a, int b) {
+	if(b==0)
+		return a;
+	return gcd(b, a%b);
+}
+lcm = a*b / gcd.
+
+
+
+
+// fast power
+// 10^16 = (10^8)^2
+// 10^17 = (10^8)^2 * 10
+int pow(int b, int p) {         // O(log(p) base 2)
+    if(p == 0)  return 1;
+    int sq = pow(b, p/2);
+    sq = sq*sq;
+ 
+    if(p%2 == 1)
+        sq = sq*b;
+ 
+    return sq;
+}
+//with mod
+long long pwr(long long base, long long pw, long long mod) {
+	if (pw == 0)
+		return 1;
+	if (pw % 2)
+		return (base * pwr(base, pw - 1, mod) % mod);
+	return pwr((base * base) % mod, pw / 2, mod);
+}
+
+
+// What about calculating: (a^1+a^2+a^3+a^4+a^5+a^n) ???
+ 
+// Let's try even power
+// (a^1+a^2+a^3+a^4+a^5+a^6)       = (a^1+a^2+a^3)+(a^1*a^3+a^2*a^3+a^3*a^3)
+// (a^1+a^2+a^3)+a^3*(a^1+a^2+a^3) = (a^1+a^2+a^3)*(1+a^3)
+// (a^1+a^2+a^3)+a^3*(a^1+a^2+a^3) = (a^1+a^2+a^3)*(1+ a^1+a^2+a^3 - (a^1+a^2))
+//
+ 
+// what about odd n
+// (a^1+a^2+a^3+a^4+a^5+a^6+a^7)   = a + a*(a^1+a^2+a^3+a^4+a^5+a^6)
+//                                 = a(1+(a^1+a^2+a^3+a^4+a^5+a^6))
+ 
+ 
+ll sumPows(ll a, int k) { // Return a^1+a^1+a^2+.....a^k    in O(k)
+    if (k == 0)
+        return 0;
+ 
+    if (k % 2 == 1)
+        return a * (1 + sumPows(a, k - 1));
+ 
+    ll half = sumPows(a, k / 2);
+    return half * (1 + half - sumPows(a, k / 2 -1) );
+} 

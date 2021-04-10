@@ -1,0 +1,104 @@
+#include<bits/stdc++.h>
+#include <ext/numeric>
+using namespace std;
+using namespace __gnu_cxx;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = 3.14159265358979323846;
+char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char dig[10]= {'0','1','2','3','4','5','6','7','8','9'};
+void fastInOut();
+int dx[] = { 0, 1, -1,  0, -1, 1,-1, 1};
+int dy[] = { 1, 0,  0, -1, -1, 1, 1,-1};
+int MOD=(int)1e9+7;
+const int N=(int)5e3+5;
+ll oo=(ll)1e17+5;
+int inf=2e9;
+#define x first
+#define y second
+#define  pb  push_back
+int n,m,t,u,v,c;
+ll d[N];
+struct edge
+{
+    int x,y,c;
+};
+vector<edge>a;
+vector<vector<pair<int,int> > >adjlist;
+ll dp[N];
+ll dfs(int i){
+    if(dp[i] != oo) return dp[i];
+    dp[i] = oo-1;
+    ll ret = oo;
+    for(auto p : adjlist[i]) ret = min(ret, p.y + dfs(p.x) * (dfs(p.x) < 0));
+    return dp[i] = ret;
+}
+bool Bf()
+{
+    for(int i=0; i<=n; i++)d[i]=oo,dp[i]=oo;
+    d[0]=0;
+    bool r=0;
+    for(int i=0; i<n; i++)
+    {
+        r=0;
+        for(int j=0; j<a.size(); j++)
+        {
+            if(d[a[j].y]>d[a[j].x]+a[j].c)
+            {
+                r=1;
+                d[a[j].y]=d[a[j].x]+a[j].c;
+                if(i==n-1)
+                    return 1;
+            }
+        }
+        if(r==0)
+            break;
+    }
+    return 0;
+}
+int main()
+{
+//#ifndef ONLINE_JUDGE
+// freopen("in.txt", "r", stdin);
+//#endif
+    //fastInOut();
+    int ts;
+    scanf("%d",&ts);
+    while(ts--)
+    {
+        scanf("%d%d",&n,&m);
+        adjlist.clear();
+        adjlist.resize(n);
+        a.clear();
+
+            ll res=oo;
+        for(int i=0; i<m; i++)
+        {
+            scanf("%d%d%d",&u,&v,&c);
+            edge e;
+            e.c=c,e.x=u,e.y=v;
+            a.pb(e);
+            adjlist[--u].pb({--v,c});
+            res=min((ll)c,res);
+
+        }
+
+        if(Bf())printf("-inf\n");
+        else
+        {
+        for(int i=0; i<n; i++)
+        {
+            res=min(dfs(i),res);
+        for(int j=0; j<n; j++)dp[j]=oo;
+        }
+
+            printf("%I64d\n",res);
+        }
+    }
+}
+
+void fastInOut()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL), cout.tie(NULL);
+}

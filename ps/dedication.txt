@@ -1,0 +1,113 @@
+
+
+dedication
+ * before thinking *
+
+- don't rush to the  thinking phase
+- read *****ALL**** the problem statment
+- take notes "clear" "spacific"  "concret"
+- *** the notes u took ***
+- trace all doable given test cases 
+- consider bounderies and tricky cases "concretly" ***write them***
+
+/thinking/
+- *** the notes u took ***
+- don't rush to the coding phase
+- if graph try reconstracting the graph or building it if that helps
+- brute force
+- monotonic -> sorting 
+- counting : just try multipling more than max or min it's probably more ******general ********
+  if u r counting under multiple conditions try to seperate counting each case alone 
+- if it seems like it have to be done in linear time try to think greedy "itreate once maybe back and forth if needed" 
+   think "two stacks"
+- is dpable 
+- think reversed
+-** verify before u discard a sol **
+ if dp can u optimize it more "think of changing the state (val vs index)" 
+- don't try to optimiz more if not necessary "speacially with online judge" if with person ask if there's more opt. communicate
+- be careful TLE, MLE , long long 
+- trace all doable given test cases and consider bounderies and tricky cases
+- if greedy make ur own test cases "small - meduim - large(write a code if necessary)"
+- pre-process. > on the fly
+
+/after thinking/
+- int x=(int)((t+EPS)*100);//work in integer domain if u can (he want 2 dig after the desimal point)
+- verify on all doable given test cases 
+ and consider bounderies and tricky cases ***make sure your algo. works before wasting time on writing and debuging***
+-** verify before u discard a sol **
+
+consider 
+verify 
+consider 
+verify 
+consider 
+verify 
+
+*****************Writing****************************
+- *** the notes u took ***
+- *** the notes u took ***
+- *** the notes u took ***
+- s.pop() or q.pop() : check size() first
+- modify - add to input arr if necessary
+- don't copy much it makes u nervous 
+
+ * after writing  *
+- test all given test cases and bounderies and tricky cases
+- check for intermediate overflow 
+- seg-faults/undefined behavior: may be arr out of boundries access
+- make sure every memory access (for loop, arr-access,arr[**SIZE + ^^5^^"safer"**]) is not out of boundries access
+- 0-based/ 1-based arr
+undefined-behavior(UB):
+- X / 0; //UB 
+- X % 0; //UB	
+- may be arr out of boundries access	
+
+
+
+
+dedication
+*thinking *
+- inequality
+- greedy "equatons*
+- in optimization problems check if there is limited scope of answars e.g [1:2] maybe BS if monotonic
+- if n<13 (O!n) may pass
+*befor writing*
+- if u have a templete use it like "bfs func"
+-check if angle in redians
+- make sure u have good understanding of the problem.
+- make sure u arn't solving a harder version of the problem .
+  /thinking/
+- consider the worest case "calculate the complexity carefully" * * ** * ** * * 
+-  don't depende on one or two case try to generlize it  
+- do you want iterate twice ,more than three times on the array to check cond. ?
+- if (x > nb) x -= nb; becarful if "x" can't be -ve
+- in 2 players game : "using dp or .." if in the player turn can't make a move towards a losing state so he is in a losing state.
+- "avoid double counting"
+*after writing*
+don't use ld or ll unless it's necessary 
+return 1LL*a.s*b.h>1LL*b.s*a.h; "LL"
+ll x = INT_MAX+1; //intermediate overflow
+make sure use b[**j**] ,a[*i*] properly
+
+manhaten dis=|x|+|y| "abs"
+"memeset- clear" 'multiple test cases'
+dont forget () in equation "if needed"
+
+
+
+***** debug with printing after few moments of tracing ******
+- never quite ***if u still have time try to optimize after submiting brute force *** 
+
+wrong answer repeat
+
+if u finished and still have time make the code more readable 
+
+
+
+
+
+
+
+
+
+

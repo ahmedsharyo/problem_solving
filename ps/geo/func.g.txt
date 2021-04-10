@@ -1,0 +1,34 @@
+const double EPS=(1e-10);
+typedef complex<double>point;
+#define x real()
+#define y imag()
+#define polar(r,t) ((r)*exp(point(0,(t))))
+#define length (a) hypot((a).x,(a).y)
+#define angle(a) atan2((a).y,(a).x)
+#define vec(a,b) ((b)-(a))//xxxx
+#define dot(a,b) ((conj(a)*(b)).real())
+#define cross(a,b) ((conj(a)*(b)).imag())
+#define lengthsqr(a) dot(a,a) //xxx…
+#define rotate (v,t)    ((v)*exp(point(0,t)))
+#define rotateabout(v,t,a) (rotate(vec(a,v),t)+(a))//xxx
+#define reflect(v,m) (conj((v)/(m))*(m))
+#define dist(a,b) fabs((a)-(b))
+bool PointOnRay(const point &a,const point &b,const point &p)
+{
+ //   return fabs(cross(vec(a,b),vec(a,p)))<Eps && dot(vec(a,b),vec(a,p))>-Eps;//Eps ?!!
+
+}
+bool PointOnLine(const point &a,const point &b,const point &p)
+{
+ //   return fabs(cross(vec(a,b),vec(a,p)))<Eps;//Eps ?!!
+}
+bool PointOnSegment(const point &a,const point &b,const point &p)
+{
+    //if((lengthsqr(vec(a,b)))<eps)return (lengthsqr(vec(a,p)))<eps; //nafs el point
+    return PointOnRay(a,b,p)&&PointOnRay(b,a,p);
+}
+double pointLineDistance(const point &a,const point &b,const point &p)
+{
+    return fabs(cross(vec(a,b),vec(a,p)))/dist(a,b);
+}
+

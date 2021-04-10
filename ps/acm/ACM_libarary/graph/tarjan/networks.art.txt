@@ -1,0 +1,87 @@
+#include<bits/stdc++.h>
+#include <ext/numeric>
+using namespace std;
+using namespace __gnu_cxx;
+typedef long long ll;
+typedef unsigned long long ull;
+const double PI = 3.14159265358979323846;
+char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char dig[10]= {'0','1','2','3','4','5','6','7','8','9'};
+void fastInOut();
+int dx[] = { 0, 1, -1,  0, -1, 1,-1, 1};
+int dy[] = { 1, 0,  0, -1, -1, 1, 1,-1};
+int MOD=(int)1e9+7;
+const int N=(int)1e2+5;
+ll oo=(ll)1e18;
+int inf=2e9;
+#define x first
+#define y second
+#define  pb  push_back
+vector<vector <int> >a;
+set<int>artpoints;
+int lowlink[N],dfn[N];
+int ndfn;
+bool root;
+void tarjan(int node)
+{
+    lowlink[node]=dfn[node]=ndfn++;
+    for(auto ch:a[node])
+    {
+
+        if(dfn[ch]==-1)
+        {
+            tarjan(ch);
+            lowlink[node]=min(lowlink[node],lowlink[ch]);
+            if(lowlink[ch]>=dfn[node])
+            {
+                if(dfn[node]==0&&!root)
+                    root=1;
+                else
+                    artpoints.insert(node);
+            }
+        }
+        else if(node!=ch)
+            lowlink[node]=min(lowlink[node],dfn[ch]);
+    }
+}
+int main()
+{
+//#ifndef ONLINE_JUDGE
+    //freopen("out.txt", "wt", stdout);
+//#endif
+   // fastInOut();
+    int u,v,n;
+    string s;
+    while(1)
+    {
+        scanf("%d\n",&n);
+        if(n==0) break;
+        a.clear();
+        a.resize(n);
+        artpoints.clear();
+        for(int i=0;i<n;i++)dfn[i]=lowlink[i]=-1;
+        ndfn=root=0;
+        while(1)
+        {
+            getline(cin,s);
+            istringstream is(s);
+            is>>u;
+            if(u==0) break;
+            u--;
+            while(is>>v)
+            {
+                    v--;
+                a[u].pb(v);
+                a[v].pb(u);
+            }
+        }
+        tarjan(v);
+   printf("%d\n",artpoints.size());
+    }
+}
+
+void fastInOut()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL), cout.tie(NULL);
+}

@@ -1,0 +1,151 @@
+///power function
+int power(int x,int y){
+    int fin=1;
+    for(int i=0;i<y;i++){
+        fin*=x;
+    }
+    return fin;
+}
+
+int power(int x,int y)
+{
+if(y==0)return 1;
+int fin=pow(x,y/2);
+fin=fin*fin;
+if(y%2==1)fin=fin*x;
+return fin;
+}
+
+///sieve function
+bool p[10000005];//0=prime
+
+void sieve(){
+	p[0]=p[0]=1;
+for(int i=2;i<=10000000;i++)
+    {
+        if(p[i]==0)
+        {
+            for(int j=2*i;j<=10000000;j=j+i)
+                p[j]=1;
+        }
+}
+}
+
+bool isprime(int x){
+    int sq = sqrt(x);
+    for(int i = 2 ; i <= sq ; i++){
+        if(x % i == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+
+string IntToString (int a)
+{
+    ostringstream temp;
+    temp<<a;
+    return temp.str();
+}
+
+int stringtoint(string s){
+    istringstream buffer(s);
+    int value;
+    buffer >> value;
+    return value;
+}
+
+int gcd(int a,int b)
+{
+if(b==0)return a;
+return gcd(b,a%b);
+}
+
+
+int lcm(int a,int b)
+{
+int fin=a*b/__gcd(a,b);
+return fin;
+}
+
+
+// to get a count of the numbers that divsable by c in range of [a:b]
+int lower = (a + c - 1) / c; // find lowest divisor (round up)
+int upper = b / c;           // find higher divisor (round down)
+d = upper - lower + 1;       // get no of divisors
+
+
+int countPrimesInRange_sieve(int n) // Backward thinking
+{
+    vector<bool> isPrime(n+1, true);  // set all of them to primes
+    isPrime[0] = isPrime[1] = 0;        // 0, 1 are not primes
+ 
+    for (ll i = 2; i*i <= n; ++i) {
+        if (isPrime[i]) {
+            for (int j = i * 2; j <= n; j += i)
+                isPrime[j] = 0;
+        }
+    }
+ 
+    int cnt = 0;
+ 
+    for (int i = 0; i < (int)isPrime.size(); ++i)
+        if(isPrime[i])
+            cnt++;
+ 
+    return cnt;
+}
+
+
+//Base Conversion
+string letters = "0123456789ABCDEF";
+int toInt(char c) { return letters.find(c); }
+
+int FromAnyBaseToDecimal(string in,int base){
+	int res=0;
+	for(int i=0,n=in.size();i<n;++i)
+		res*=base , res+=toInt(in[i]);
+	return res;}
+string FromDecimaltoAnyBase(int number,int base){
+	if(number==0)return "0";
+	string res="";
+	for(;number;number/=base)
+		res=letters[number%base]+res;
+	return res; }
+
+//combination
+unsigned long long nCr(unsigned long long n, unsigned long long r) {
+	return n == r ? 1 : nCr(n - 1, r) * n / (n - r);
+}
+
+
+//dijkstra 
+
+int Dijkstra1(vector< vi > adjMax, int src, int dest = -1)    // O(n^2)
+{
+    int n = sz(adjMax);
+    vi vis(n, 0), dist(n, OO), prev(n, -1);
+    dist[src] = 0;
+ 
+    while(true) {
+        int val = OO, idx = -1;
+        lp(i, n)
+            if(!vis[i] && dist[i] < val) val = dist[i], idx = i;
+ 
+        if(idx == -1 || idx == dest)    break;
+        vis[idx] = 1;
+ 
+        lp(i, n)
+            if (dist[i] > (val=dist[idx] + adjMax[idx][i]) )
+                dist[i] = val, prev[i] = idx;   // Relax
+    }
+    return dest == -1 ? -1 : dist[dest];
+}
+
+// equility between doubles
+bool equals(double x,double y)
+{
+    if(abs(x-y)<=0.00001)return true;
+    else return false;
+}

@@ -1,0 +1,1007 @@
+
+
+
+
+dedication
+ * before writing *
+
+- read carefully
+/thinking/
+- is dpable 
+- think reversed
+- verify before u discard a sol
+
+/after thinking/
+- int x=(int)((t+EPS)*100);//work in integer domain if u can (he want 2 dig after the desimal point)
+- verify on all doable given test cases and consider bounderies and tricky cases
+- be careful TLE, MLE , long long 
+consider 
+verify 
+consider 
+verify 
+consider 
+verify 
+
+ * after writing  *
+- test all given test cases and bounderies and tricky cases
+- check for intermediate overflow 
+
+
+
+
+********* math ******
+
+int gcd(int a, int b) {
+	if(b==0)
+		return a;
+	return gcd(b, a%b);
+}
+lcm = a*b / gcd.
+
+
+
+
+// fast power
+// 10^16 = (10^8)^2
+// 10^17 = (10^8)^2 * 10
+int pow(int b, int p) {         // O(log(p) base 2)
+    if(p == 0)  return 1;
+    int sq = pow(b, p/2);
+    sq = sq*sq;
+ 
+    if(p%2 == 1)
+        sq = sq*b;
+ 
+    return sq;
+}
+
+
+
+// What about calculating: (a^1+a^2+a^3+a^4+a^5+a^n) ???
+ 
+// Let's try even power
+// (a^1+a^2+a^3+a^4+a^5+a^6)       = (a^1+a^2+a^3)+(a^1*a^3+a^2*a^3+a^3*a^3)
+// (a^1+a^2+a^3)+a^3*(a^1+a^2+a^3) = (a^1+a^2+a^3)*(1+a^3)
+// (a^1+a^2+a^3)+a^3*(a^1+a^2+a^3) = (a^1+a^2+a^3)*(1+ a^1+a^2+a^3 - (a^1+a^2))
+//
+ 
+// what about odd n
+// (a^1+a^2+a^3+a^4+a^5+a^6+a^7)   = a + a*(a^1+a^2+a^3+a^4+a^5+a^6)
+//                                 = a(1+(a^1+a^2+a^3+a^4+a^5+a^6))
+ 
+ 
+ll sumPows(ll a, int k) { // Return a^1+a^1+a^2+.....a^k    in O(k)
+    if (k == 0)
+        return 0;
+ 
+    if (k % 2 == 1)
+        return a * (1 + sumPows(a, k - 1));
+ 
+    ll half = sumPows(a, k / 2);
+    return half * (1 + half - sumPows(a, k / 2 -1) );
+} 
+
+
+
+
+**Factorization**
+
+//sieve
+int countPrimesInRange_sieve(int n) // Backward thinking
+{
+    vector<bool> isPrime(n+1, true);  // set all of them to primes
+    isPrime[0] = isPrime[1] = 0;        // 0, 1 are not primes
+ 
+    for (ll i = 2; i*i <= n; ++i) {
+        if (isPrime[i]) {
+            for (int j = i * 2; j <= n; j += i)
+                isPrime[j] = 0;
+        }
+    }
+ 
+    int cnt = 0;
+ 
+    for (int i = 0; i < (int)isPrime.size(); ++i)
+        if(isPrime[i])
+            cnt++;
+ 
+    return cnt;
+}
+
+
+//prime factorization
+void getDecompose(int n)
+{
+    for (int i=2;i<=n;i++)
+    {
+        while (n % i == 0)
+        {
+            n /= i;
+            v.push_back(i);
+        }
+    }
+}
+
+
+
+//the no of num that div by c in [a:b]
+
+int lower = (a + c - 1) / c; // find lowest divisor (round up)
+int upper = b / c;           // find higher divisor (round down)
+d = upper - lower + 1;       // get no of divisors
+
+
+Counting the divisors
+ 2^4 has 5 divisors 2^0, 2^1...2^4
+ p^n has n+1 divisors for any pprime number
+ what about p1^a  p1^b      (a+1)  (b+1)
+ E.g. 12 2^2  3^1   has 3  2 divisors.
+ 12 = 2^0  3^0
+ 12 = 2^0  3^1
+ 12 = 2^1  3^0
+ 12 = 2^1  3^1
+ 12 = 2^2  3^0
+ 12 = 2^2  3^1
+ So if we modified factorization to return (p1^a, p2^b...)
+ We could develop a simple RECURSIVE code to build the divisors.
+ Simply pick a power from current prime, and move to next prime number
+ Any iterative code is also possible, but a bit challenging
+ 
+ 
+ 
+ what about Factorizing n^power
+ Simply if  n   = p1^a       p2^b        p3^c
+ Then       n^z = p1^az      p2^bz   p3^cz
+ 
+ Divisors of    n   = (a+1)      (b+1)   (c+1)
+ Divisors of    n^z = (az+1)     (bz+1)      (cz+1)
+
+
+
+ Let D(i) is number of divisors of i. Return sum D(i) in range n
+
+ 
+ int rangeFactorization2(int n)       backward thinking
+{   suitable for range 2*10^6
+    vectorint numFactors(n+1);
+ 
+    for (int i = 1; i = n; i++)          For each divisor
+        for (int k = i; k = n; k += i)           For each divisble number
+            numFactors[k]++;                         i divides k
+ 
+    int s = 0;
+    for (int i = 1; i = n; i++)
+        s += numFactors[i];      sure you can do it without an array
+ 
+    return s;
+}
+ 
+
+
+*** factorial ***
+
+// Wilson's theorem: (p-1)!%p = p-1 IFF p is prime
+// Given a prime p, and n!, what is max x such that n! divisble by p^x
+( #of p multiplied in this n! )
+/*
+              1                   2
+      1       2        3          2
+  1   2   3   2   5    2    7     2
+1 2 3 2 5 2 7 2 9 2 11 2  13 2 15 2             [Exploring 16! with p=2]
+*/
+int FactN_PrimePower(int n, int p) {        // O(log(n) base p)
+    int pow = 0;
+    for(int i = p; i <= n ; i = i * p)
+        pow += n/i;
+ 
+    return pow;
+}
+ 
+( Factorial Factorization )
+ n! = p1^a * p2^b ... 
+// Seive on n, get primes in range n
+// For each prime number p
+//  call FactN_PrimePower(n, p)
+
+
+ 
+// Given m, what is max x such that m^x divides n!?
+// Again, think in prime representation.
+// let's simplify, uch that m^x divides g?
+// Let m =  2^3 * 5^4
+// Let g =  2^10 * 5^8 * 11^3
+// Then 1st we can with 2 and 5 only.
+// 10/3 = 3, then max for p1=2 is (2^3)^3
+// 8/4 =2, so max is (5^4)^2
+// Then let x = min(3, 2) = 2...so m^2 divides g
+//
+// what if m = 2^3 * 5^4 * 7^2 ? then it doesn't divide g, and x = 0
+//
+// what about n!?
+// Then factroize m
+//  for each p^x in m
+//      check power in n!, and follow as above
+ 
+ 
+ 
+  
+// What about calc gcd(!m, n)
+// gcd is greatest common divisor
+// Let m =  2^3 * 5^7
+// Let n =  2^10 * 5^3 * 11^3
+// then gcd is min of each power, so that it divides both, and largest
+// gcd = 2 ^ min(3, 10) * 5 ^ min(7, 3) * 11 ^ min(0, 3)
+//
+// Then factroize n
+//  for each p^x in n
+
+ Given M, How to get Smallest N, such that N! has M Trailing Zeros?
+N=M*5; cause #of 10 dep_on #of 5 in the number
+//      check power in m!, and use min of powers
+ 
+ 
+ // How many trailing zeros in n!?   E.g. 15! = 1307674368000    -> 3 zeros
+// How to calculate them? How zero come in base 10? 2*5
+// Then, if w know that n! = 2^a * 5^b * reminder...then we have min(a, b) zeros.
+// More simpler, count of 2s > count of 5s in n!...then min(a, b) = b always
+// What about n! base X? how many zeros?
+// Again, Let X = 16 (hexidecimal), when zero appears?...notice (10 in base 16 equals 16 in base 10)
+// Again, every time n! has X, we have a nother Zero
+// So how many Xs there in n!?
+// Factorize X, check its primes power in n!
+  
+
+
+// Get right most non zero digit of factorial N? So in 15! will be 8
+// Let n = 15, n! = 1307674368000 = 2^11 * 5^3 * 5108103
+// So n! has 3 zeros
+// We want to calculate n! with only 11-3 2's
+// Let X = 2^8 * 5108103 = 1307674368       so X%10 = 8
+
+
+// Exercise: Given M, How to get Smallest N, such that N! has M Trailing Zeros?
+N=M*5 cause #of 0  dep_on #of 10 -> dep_on #of 5 as descriped above
+
+******* graph ****** 
+
+//tarjan
+
+#include<bits/stdc++.h>
+#include <ext/numeric>
+using namespace std;
+using namespace __gnu_cxx;
+typedef long long ll;
+typedef unsigned long long ull;
+tarjan
+const double PI = 3.14159265358979323846;
+char alpha[26] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+char dig[10]= {'0','1','2','3','4','5','6','7','8','9'};
+void fastInOut();
+int dx[] = { 0, 1, -1,  0, -1, 1,-1, 1};
+int dy[] = { 1, 0,  0, -1, -1, 1, 1,-1};
+int MOD=(int)1e9+7;
+const int N=(int)2e5+5;
+ll oo=(ll)1e18;
+int inf=2e9;
+#define x first
+#define y second
+#define  pb  push_back
+vector< vector<int> > adjList, comps, dagList;
+vector<int> inStack, lowLink, dfn, comp, inDeg, outDeg;
+stack<int> stk;
+int ndfn, cntSrc, cntSnk;
+
+void tarjan(int node) {
+	lowLink[node] = dfn[node] = ndfn++, inStack[node] = 1;
+	stk.push(node);
+
+	for(unsigned int i=0;i<adjList[node].size();i++) {
+		int ch = adjList[node][i];
+		if (dfn[ch] == -1) {
+			tarjan(ch);
+			lowLink[node] = min(lowLink[node], lowLink[ch]);
+		} else if (inStack[ch])
+			lowLink[node] = min(lowLink[node], dfn[ch]);
+	}
+
+	if (lowLink[node] == dfn[node]) {
+		comps.push_back(vector<int> ());
+		int x = -1;
+		while (x != node) {
+			x = stk.top(), stk.pop(), inStack[x] = 0;
+			comps.back().push_back(x);
+			comp[x] = comps.size() - 1;
+		}
+	}
+}
+
+void scc() {
+	int n = adjList.size();
+
+	inStack.clear();	inStack.resize(n);
+	lowLink.clear();	lowLink.resize(n);
+	dfn.clear();		dfn.resize(n, -1);
+	ndfn = 0;
+
+	comp.clear(), comp.resize(n);
+	comps.clear();
+
+	for(int i=0;i<n;i++) if (dfn[i] == -1)
+		tarjan(i);
+}
+
+void computeCompGraph() {
+	int csz = comps.size(), cntSrc = csz, cntSnk = csz;
+
+	outDeg.clear();		outDeg.resize(csz);
+	inDeg.clear();		inDeg.resize(comps.size());
+	dagList.clear();		dagList.resize(csz);	//will contain duplicates
+
+	for (int i = 0; i < adjList.size(); i++)
+		for (int j = 0; j < adjList[i].size(); j++) {
+			int k = adjList[i][j];
+			if (comp[k] != comp[i]) {
+				dagList[comp[i]].push_back(comp[k]);	//reverse
+				if (!(inDeg[comp[k]]++))		cntSrc--;
+				if (!(outDeg[comp[i]]++))		cntSnk--;
+			} else
+				;// this edge is for a component comp[k]
+		}
+
+	// Min edges to convert DAG to one cycle
+	if (comps.size() == 1)
+		cout << "1\n";
+	else {
+		cout << max(cntSrc, cntSnk) << "\n";
+	}
+}
+
+int main()
+{
+
+    int cases;
+	cin >> cases;
+
+	while (cases--) {
+		int n, m;
+		cin >> n >> m;
+		adjList.clear();
+		adjList = vector<vector<int> > (n);
+
+		for(int i=0;i< m;i++) {
+			int f, t;
+			cin >> f >> t;
+			f--, t--;
+			adjList[f].push_back(t);
+		}
+
+		scc();
+		computeCompGraph();
+
+	}
+}
+
+
+
+
+
+// art.points
+
+vector<vector <int> >a;
+set<int>artpoints;
+int lowlink[N],dfn[N];
+int ndfn;
+bool root;
+void tarjan(int node)
+{
+    lowlink[node]=dfn[node]=ndfn++;
+    for(auto ch:a[node])
+    {
+
+        if(dfn[ch]==-1)
+        {
+            tarjan(ch);
+            lowlink[node]=min(lowlink[node],lowlink[ch]);
+            if(lowlink[ch]>=dfn[node])
+            {
+                if(dfn[node]==0&&!root)
+                    root=1;
+                else
+                    artpoints.insert(node);
+            }
+        }
+        else if(node!=ch)
+            lowlink[node]=min(lowlink[node],dfn[ch]);
+    }
+}
+int main()
+{
+
+    int u,v,n;
+    string s;
+    while(1)
+    {
+        scanf("%d\n",&n);
+        if(n==0) break;
+        a.clear();
+        a.resize(n);
+        artpoints.clear();
+        for(int i=0;i<n;i++)dfn[i]=lowlink[i]=-1;
+        ndfn=root=0;
+        while(1)
+        {
+            getline(cin,s);
+            istringstream is(s);
+            is>>u;
+            if(u==0) break;
+            u--;
+            while(is>>v)
+            {
+                    v--;
+                a[u].pb(v);
+                a[v].pb(u);
+            }
+        }
+        tarjan(v);
+   printf("%d\n",artpoints.size());
+    }
+}
+
+
+
+
+
+
+
+//check if bridges exist
+
+typedef bitset<20>Mask;
+struct node
+{
+    int x,y,c;
+};
+node a[25];
+ll memo[20][1<<20];
+int n,m;
+const int MAXN = 20;
+int adjMat[MAXN][MAXN];
+int low[MAXN], dfn[MAXN],vis[MAXN], ndfn;
+bool check_bridges(int i, int p) //check if bridges exist
+{
+    low[i] = dfn[i] = ++ndfn;
+    for (int j = 0; j < n; j++) if (adjMat[i][j] && j != p)
+        {
+            if (dfn[j] == 0)
+            {
+               if(check_bridges(j, i)) return 1;
+                if( low[j] > dfn[i]) return 1;
+                 low[i] = min(low[i],low[j]);
+            }
+            else
+                low[i] = min(low[i], dfn[j]);
+        }
+    return 0;
+}
+
+
+bool valid(Mask ma)
+{
+    ndfn=0;
+    for(int i=0; i<n; i++)
+    {
+        low[i]=-1,dfn[i]=vis[i]=0;
+        for(int j=0; j<n; j++)
+        {
+            adjMat[i][j]=0;
+        }
+    }
+    int nodes=0;
+    for(int i=0; i<m; i++)
+    {
+        if(ma[i])
+        {
+            adjMat[a[i].x][a[i].y]=adjMat[a[i].y][a[i].x]=1;
+            if(!vis[a[i].x])
+            {
+                nodes++;
+                vis[a[i].x]=1;
+            }
+            if(!vis[a[i].y])
+            {
+                nodes++;
+                vis[a[i].y]=1;
+            }
+        }
+    }
+    if(nodes!=n)return 0;
+     bool frist=1;
+    for(int i=0; i<n; i++)
+    {
+        if(!dfn[i])
+        {
+            if(!frist)return 0;
+            frist=0;
+            bool b= check_bridges(i,-1);
+            if(b)return 0;
+        }
+
+    }
+
+    return 1;
+}
+ll solve(int i,Mask ma )
+{
+    if(i==m)
+    {
+        if(valid(ma))return 0;
+        else return inf;
+    }
+    ll &ret=memo[i][ma.to_ulong()];
+    if(ret!=-1)return ret;
+    ret=0;
+    ret=solve(i+1,ma);
+    ma[i]=1;
+    ret=min(ret,solve(i+1,ma)+a[i].c);
+    return ret;
+}
+int main()
+{
+
+    int c,u,v,t=1;
+    while(cin>>n>>m&&(n+m))
+    {
+        memset(memo,-1,sizeof memo);
+        for(int i=0; i<m; i++)
+        {
+            cin>>u>>v>>c;
+            a[i].x=u-1,a[i].y=v-1,a[i].c=c;
+        }
+        int res= solve(0,0);
+        if(res>=inf)cout<<"There is no reliable net possible for test case "<<t++<<"."<<endl;
+        else cout<<"The minimal cost for test case "<<t++<<" is "<<res<<"."<<endl;
+    }
+}
+
+
+
+
+// prime mst
+struct Node
+{
+    float x,y;
+    float c;
+};
+float t,n,u,v;
+Node b[N];
+map<pair<float,float>,vector<Node> >a;
+map<pair<float,float>,bool >vis;
+pair<float,float> st;
+double prime()
+{
+    vis.clear();
+    pair<float,pair<float,float> >cur ,tmp;
+    pair<float,float>temp;
+    set<pair<float, pair<float,float> > >q;
+    cur= {0,st};
+    q.insert(cur);
+    double cost=0;
+    while(!q.empty())
+    {
+        cur=*q.begin();
+        q.erase(q.begin());
+        temp= {cur.y.x,cur.y.y};
+        if(vis[temp])continue;
+        vis[temp]=1;
+        cost+=cur.x;
+    
+        for(auto i:a[cur.y])
+        {
+            temp= {i.x,i.y};
+            if(!vis[temp])
+            {
+                tmp= {i.c,temp};
+                q.insert(tmp);
+            }
+        }
+
+    }
+    return cost;
+
+}
+int main()
+{
+=
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        for(int i=0; i<n; i++)
+            cin>>b[i].x>>b[i].y;
+
+        for(int i=0; i<n; i++)
+            for(int j=0; j<n; j++)
+            {
+                Node tmp;
+                tmp.x=b[j].x,tmp.y=b[j].y,tmp.c = sqrt((b[i].x-b[j].x)*(b[i].x-b[j].x)+(b[i].y-b[j].y)*(b[i].y-b[j].y));
+                //       cout<<b[i].x<<" "<<b[i].y<<" * "<<b[j].x<<" "<<b[j].y<<" "<<tmp.c<<endl;
+                a[ {b[i].x,b[i].y}].pb(tmp);
+                st= {b[i].x,b[i].y};
+            }
+        cout<<setprecision(2)<<fixed<<prime()<<endl;
+        a.clear();
+        if(t)cout<<endl;
+    }
+}
+
+
+//max_flow  , min_cut
+int cap[N][N],n;
+int path[N],vis[N],pathlen;
+
+int getpath(int src,int trg,int curlen,int maxcap)
+{
+    path[curlen]=src;
+    if(src==trg)
+    {
+       pathlen=curlen+1;
+       return  maxcap;
+    }
+    int ret=0;
+    vis[src]=1;
+    for(int i=1;i<=n;i++)
+    {
+        if(vis[i]||cap[src][i]<=0)continue;
+
+      ret=getpath(i,trg,curlen+1,min(maxcap,cap[src][i]));
+      if(ret>0)break;
+    }
+    return ret;
+}
+int maxflow(int src,int sink)
+{
+    int totalflow=0;
+    while(1)
+    {
+        memset(vis,0,sizeof vis);
+        int newflow=getpath(src,sink,0,INT_MAX);
+        if(!newflow)break;
+        bool ch=0;
+        for(int i=1;i<pathlen;i++)
+        {
+            int u=path[i-1],v=path[i];
+            cap[u][v]-=newflow;
+            cap[v][u]+=newflow;
+
+        }
+        totalflow+=newflow;
+    }
+    return totalflow;
+}
+int main()
+{
+
+   int m,t=1,u,v,c,s,d;
+   while(cin>>n&&n)
+   {
+       cin>>s>>d>>m;
+       res.clear();
+       memset(cap,0,sizeof cap);
+       for(int i=0;i<m;i++)
+       {
+           cin>>u>>v>>c;
+           cap[u][v]+=c;//There might be more than one connection between a pair of nodes
+           cap[v][u]+=c;
+       }
+       cout<<"Network "<<t++<<endl;
+       cout<<"The bandwidth is "<<maxflow(s,d)<<"."<<endl;
+             cout<<endl;
+
+   }
+}
+
+
+//get min cost maxflow and max cost maxflow
+//N can be optimized to n+m+2 = #of nodes
+
+typedef vector<int>       vi;
+
+struct edge
+{
+    int x, y ;
+    int c;
+    edge(int x, int y, int c): x(x), y(y), c(c) {}
+};
+
+vector<int> path;
+int m,n,from,to,prv[N],d[N];
+
+void buildpath(int i)
+{
+    path.pb(i);
+    if(prv[i]==-1)return;
+    buildpath(prv[i]);
+}
+
+void BellmanFord(vector<edge> a)
+{
+    for(int i=0; i<N; i++)d[i]=oo,prv[i]=-1;
+    d[0]=0;
+    bool r=0;
+    for(int i=0; i<=(n+m+2)*(n+m+2); i++)//edge between all pair of nodes problem Dependant-optimizable
+    {
+        r=0;
+        for(int j=0; j<(int)a.size(); j++)
+        {
+            if(d[a[j].y]>d[a[j].x]+a[j].c)
+            {
+                r=1;
+                d[a[j].y]=d[a[j].x]+a[j].c;
+                prv[a[j].y]=a[j].x;
+            }
+        }
+        if(r==0)
+            break;
+    }
+}
+
+bool find_path(vector<edge> a,int dest)
+{
+    path.clear();
+    BellmanFord(a);
+    if(d[dest]==oo)return 0;
+    buildpath(dest);
+    return 1;
+}
+
+int cs=0;
+int mcmf(vector<vi>capMax,vector<vector<int> >&costMax,int src,int dest)// can be global 
+{
+    int mincost=0;
+    int  maxflow=0;
+    while(1)
+    {
+        vector<edge>a;
+
+        for(int i=0; i<N; i++)
+            for(int j=0; j<N; j++)
+            {
+                if(capMax[i][j]>0)a.pb( edge(i, j, costMax[i][j]) );
+            }
+
+        bool v= find_path(a,dest);
+        if(!v)break;
+        reverse(path.begin(),path.end());
+        int bottle_neck=oo;
+        for(unsigned int i=1; i<path.size(); i++)
+        {
+
+            int u=path[i-1],v=path[i];
+            bottle_neck=min(bottle_neck,capMax[u][v]);
+
+        }
+        for(unsigned int i=1; i<path.size(); i++)
+        {
+            int u=path[i-1],v=path[i];
+            mincost+=bottle_neck*costMax[u][v];
+            capMax[u][v]-=bottle_neck,capMax[v][u]+=bottle_neck ;
+        }
+        maxflow+=bottle_neck;
+    }
+    return mincost;
+}
+
+int main()
+{
+
+    int ts=1;
+    while(cin>>n>>m&&(n+m))
+    {
+        vector<vector<int> > cap(N, vector<int>(N,0));
+        vector<vector<int> > cost(N, vector<int>(N,0));
+        from=0,to=n+m+1;
+        int i=1;
+        int c;
+        for(int j=0; j<n; j++)
+        {
+            cin>>c;
+            cap[from][i]+=c;
+            i++;
+        }
+
+        for(int j=0; j<m; j++)
+        {
+            cin>>c;
+            cap[i][to]+=c;
+            i++;
+        }
+
+        for(int j=1; j<=n; j++)
+        {
+            for(int k=n+1; k<=n+m; k++)
+            {
+                double t;
+                cin>>t;
+                int x=(int)((t+EPS)*100);//work in integer domain
+                if(x<0)continue;
+                cap[j][k]=oo;
+                cost[j][k]=x;
+                cost[k][j]=-x;//for edge cost cancellation
+            }
+        }
+        int mn=mcmf(cap,cost,0,n+m+1);
+         for(int i=0; i<N; i++)
+            for(int j=0; j<N; j++)
+            {
+               cost[i][j]*=-1; //max cost maxflow
+            }
+        int mx=-mcmf(cap,cost,0,n+m+1);
+        cout<<"Problem "<<ts++<<": "<<setprecision(2)<<fixed<<mn/100.0<<" to "<<mx/100.0<<endl;
+    }
+}
+
+
+// is ancestor , LCA
+const int LOGMAXN=20;
+
+int N,  P[MAXN][LOGMAXN],  T[MAXN],  L[MAXN];
+
+vector<int> a[MAXN];
+
+void  set_lev(int i,int lev)
+{
+    if(L[i])return;
+    L[i]=lev;
+    for(auto ch:a[i])
+        set_lev(ch,lev+1);
+}
+void pre_pro()
+{
+    set_lev(0,1);
+
+    int i, j;
+
+    for (i = 0; i < N; i++)
+        for (j = 0; 1 << j < N; j++)
+            P[i][j] = -1;
+
+    for (i = 1; i < N; i++)
+        P[i][0] = T[i];
+
+    for (j = 1; 1 << j < N; j++)
+        for (i = 0; i < N; i++)
+            if (P[i][j - 1] != -1)
+                P[i][j] = P[P[i][j - 1]][j - 1];
+}
+
+bool query( int p, int q)
+{
+    int log, i;
+    
+    for (log = 1; 1 << log <= L[p]; log++);
+    log--;
+    
+    for (i = log; i >= 0; i--)
+        if (L[p] - (1 << i) >= L[q])
+            p = P[p][i];
+// what changed in is_ancestor
+/*
+    if (p == q)
+          return p;
+   
+  //we compute LCA(p, q) using the values in P
+      for (i = log; i >= 0; i--)
+          if (P[p][i] != -1 && P[p][i] != P[q][i])
+              p = P[p][i], q = P[q][i];
+   
+      return T[p];
+*/
+}
+
+
+int main()
+{
+    int u,v,q;
+    scanf("%d",&N);
+    for(int i=0; i<N-1; i++)
+    {
+        scanf("%d%d",&u,&v);
+        u--,v--;
+        T[v]=u;
+        a[u].pb(v);
+    }
+    pre_pro();
+
+    scanf("%d",&q);
+    while(q--)
+    {
+        scanf("%d%d",&u,&v);
+        u--,v--;
+        if(query(v,u))printf("YES\n");
+        else printf("NO\n");
+    }
+}
+
+
+the_min_sh_path, bellman ford
+int n,m,t,u,v,c;
+ll d[N];
+struct edge
+{
+    int x,y,c;
+};
+vector<edge>a;
+vector<vector<pair<int,int> > >adjlist;
+ll dp[N];
+ll dfs(int i){
+    if(dp[i] != oo) return dp[i];
+    dp[i] = oo-1;
+    ll ret = oo;
+    for(auto p : adjlist[i]) ret = min(ret, p.y + dfs(p.x) * (dfs(p.x) < 0));
+    return dp[i] = ret;
+}
+bool Bf()
+{
+    for(int i=0; i<=n; i++)d[i]=oo,dp[i]=oo;
+    d[0]=0;
+    bool r=0;
+    for(int i=0; i<n; i++)
+    {
+        r=0;
+        for(int j=0; j<a.size(); j++)
+        {
+            if(d[a[j].y]>d[a[j].x]+a[j].c)
+            {
+                r=1;
+                d[a[j].y]=d[a[j].x]+a[j].c;
+                if(i==n-1)
+                    return 1;
+            }
+        }
+        if(r==0)
+            break;
+    }
+    return 0;
+}
+int main()
+{
+
+    int ts;
+    scanf("%d",&ts);
+    while(ts--)
+    {
+        scanf("%d%d",&n,&m);
+        adjlist.clear();
+        adjlist.resize(n);
+        a.clear();
+
+            ll res=oo;
+        for(int i=0; i<m; i++)
+        {
+            scanf("%d%d%d",&u,&v,&c);
+            edge e;
+            e.c=c,e.x=u,e.y=v;
+            a.pb(e);
+            adjlist[--u].pb({--v,c});
+            res=min((ll)c,res);
+
+        }
+
+        if(Bf())printf("-inf\n");
+        else
+        {
+        for(int i=0; i<n; i++)
+        {
+            res=min(dfs(i),res);
+        for(int j=0; j<n; j++)dp[j]=oo;
+        }
+
+            printf("%I64d\n",res);
+        }
+    }
+}
+
+
+
+
+
+
