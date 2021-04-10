@@ -43,6 +43,7 @@ verify
 consider 
 verify 
 
+
 *****************Writing****************************
 - *** the notes u took ***
 - *** the notes u took ***
