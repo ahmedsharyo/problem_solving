@@ -1,3 +1,4 @@
+
 int gcd(int a, int b) {
 	if(b==0)
 		return a;
@@ -40,6 +41,10 @@ long long pwr(long long base, long long pw, long long mod) {
 	return pwr((base * base) % mod, pw / 2, mod);
 }
 
+
+// fun facts
+Lemma 1: The sum of the digits of any number N to base 10 is equal to N minus some multiple of 9.
+proof : http://applet-magic.com/digitsummod9.htm
 
 // What about calculating: (a^1+a^2+a^3+a^4+a^5+a^n) ???
  

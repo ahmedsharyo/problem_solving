@@ -1,3 +1,6 @@
+// fun facts
+Lemma 1: The sum of the digits of any number N to base 10 is equal to N minus some multiple of 9.
+proof : http://applet-magic.com/digitsummod9.htm
 
 //factorial
 // Wilson's theorem: (p-1)!%p = p-1 IFF p is prime

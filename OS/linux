@@ -1,0 +1,12 @@
+to run from bash -->>{
+
+Run vim ~/.bash_profile
+Add:
+export GO_PATH=~/go
+export PATH=$PATH:/$GO_PATH/bin
+Run source ~/.bash_profile
+
+}
+
+
+vim -->>( :wq ) to write(save) and quit

@@ -1,0 +1,42 @@
+#define c first
+#define i second
+vector< vector<pair<int,int> > >a((int)1e5+2);
+unordered_map<int,bool>m,vis;
+
+int bfs(int st)
+{
+    int r=0;
+    multiset<int>s;
+   queue<pair<int,int> >q;
+   pair<int,int>cur,tmp;
+   q.push({0,st});
+   vis[st]=1;
+    while(!q.empty())
+    {
+        cur=q.front();
+        q.pop();
+       if(cur.c!=0)s.insert(cur.c);
+       if(m[cur.i]&&!s.empty())r+=*s.begin(),s.erase(s.begin());
+        for(auto i:a[cur.i])
+        {
+            if(vis[i.i])continue;
+            q.push({i.c,i.i}); 
+             vis[i.i]=1;
+        }
+    }
+
+     return r;
+}
+
+int minTime(vector<vector<int>> b, vector<int> t) {
+    
+        
+        for(auto d:b)
+        {
+           int  u = d[0], v = d[1], c = d[2];
+            a[u].push_back({c,v});
+            a[v].push_back({c,u});
+        }
+        for(auto i:t)m[i]=1;
+    return  bfs(t[0]);
+}   
