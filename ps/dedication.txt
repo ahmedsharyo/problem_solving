@@ -1,8 +1,5 @@
 
 
-
----shit ---
-
 dedication
  * before thinking *
 
@@ -14,34 +11,38 @@ dedication
 - consider bounderies and tricky cases "concretly" ***write them***
 - make sure u have good understanding of the problem.
 - make sure u arn't solving a harder version of the problem .
+- if there is a concept in the problem statment ex.(Geometric progression) make sure u understand it concretly
 
 /thinking/
 - *** the notes u took ***
 - don't rush to the coding phase
 
-** brute force **
+** brute force ** secon = 100M Operation
 - if n<13 (O!n) may pass
 - don't try to optimiz more if not necessary "speacially with online judge" if with person ask if there's more opt. communicate
 - trace all doable given test cases and consider bounderies and tricky cases
-- is dpable 
+- is dpable " accumlative recursive" //long long dp[20][1<<20]; u can use bitset<20>b  //up to 20 ->  [1<<20]
   if dp can u optimize it more "think of changing the state (val vs index)" 
 - in 2 players game : "using dp or .." if in the player turn can't make a move towards a losing state so he is in a losing state.
-- think reversed
 - be careful TLE, MLE , long long 
 - consider the worest case "calculate the complexity carefully" * * ** * ** * * 
--** verify before u discard a sol **
+- ** verify before u discard a sol **
 
 **greedy **
+- think reversed
 - if greedy make ur own test cases "small - meduim - large(write a code if necessary)"
+- try the happy senarios first "simple - best case" then try to gerelize it on edge cases then normal cases
+- always be concrete
 - pre-process. > on the fly
-- inequality"equatons"
-- in optimization problems check if there is limited scope of answars e.g [1:2] maybe BS if monotonic -> sorting 
--  don't depende on one or two case try to generlize it  
-- do you want iterate twice ,more than three times on the array to check cond. ?
+- inequality "equatons"
+- in optimization problems check if there is limited scope of answars e.g [1:2], maybe BS if monotonic -> sorting 
+- don't depende on one or two case, try to generlize it  
+- do you want iterate twice, more than three times on the array to check cond. ?
 
 - if it seems like it have to be done in linear time try to think greedy "itreate once maybe back and forth if needed" 
-   think "two stacks"
--** verify before u discard a sol **
+- think "two stacks"
+
+- ** verify before u discard a sol **
 
 ** graph **
 -try reconstracting the graph or building it if that helps
@@ -51,7 +52,10 @@ dedication
 
 **counting **
 - just try multipling more than max or min it's probably more ******general ********
-  if u r counting under multiple conditions try to seperate counting each case alone 
+
+- if u r counting under multiple conditions try to seperate counting each case alone 
+or categories some cases " divide and conquer "
+
 - "avoid double counting"
 -** verify before u discard a sol **
 
@@ -65,24 +69,22 @@ dedication
 -check if angle in redians
 - test all given test cases and bounderies and tricky cases
 - check for intermediate overflow 
-- seg-faults/undefined behavior: may be arr out of boundries access
 - make sure every memory access (for loop, arr-access,arr[**SIZE + ^^5^^"safer"**]) is not out of boundries access
 - make sure use ***b***[**j**] ,***a***[*i*] properly
 - 0-based/ 1-based arr
-undefined-behavior(UB):
+undefined-behavior(UB) or RTE:
 - X / 0; //UB 
 - X % 0; //UB	
 - s.pop() or q.pop() : check size() first
 - modify - add to input arr if necessary
 - don't copy much it makes u nervous ( trace each line carefully if u did)
-
-
+- seg-faults/undefined behavior: may be arr out of boundries access (check stoping condition when dp "ex. f(i>=c.size())return 0;" )
 
 *after writing*
 don't use ld or ll unless it's necessary 
 return 1LL*a.s*b.h>1LL*b.s*a.h; "LL"
 ll x = INT_MAX+1; //intermediate overflow
-manhaten dis=|x|+|y| "abs"
+manhaten dis=|x|+|y| "abs"[1,100]
 "memeset- clear" 'multiple test cases'
 dont forget () in equation "if needed"
 
@@ -91,7 +93,7 @@ dont forget () in equation "if needed"
 ***** debug with printing after few moments of tracing ******	
 	when you are debuging trace each line carefully 
 	check  "bounderies and tricky cases"
-	large output --> Max_int? or overflow ?
+	large output (might be)--> Max_int? or overflow ?
 - never quite ***if u still have time try to optimize after submiting brute force *** 
 
 wrong answer repeat
