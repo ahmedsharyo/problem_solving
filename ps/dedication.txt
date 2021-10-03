@@ -11,7 +11,7 @@ dedication
 - consider bounderies and tricky cases "concretly" ***write them***
 - make sure u have good understanding of the problem.
 - make sure u arn't solving a harder version of the problem .
-- if there is a concept in the problem statment ex.(Geometric progression) make sure u understand it concretly
+- if there is a concept in the problem statment ex.(Geometric progression) make sure u understand it concretly=
 
 /thinking/
 - *** the notes u took ***
@@ -22,7 +22,14 @@ dedication
 - don't try to optimiz more if not necessary "speacially with online judge" if with person ask if there's more opt. communicate
 - trace all doable given test cases and consider bounderies and tricky cases
 - is dpable " accumlative recursive" //long long dp[20][1<<20]; u can use bitset<20>b  //up to 20 ->  [1<<20]
-  if dp can u optimize it more "think of changing the state (val vs index)" 
+  if dp can u optimize it more "think of changing the state (val vs index)
+  if u r counting what it will take at most  ex. how many moves at most maybe mini-max " ret = min(ret, max(go(_),go(__)) +1  ) 
+  if iterative you consider similar state of recursive method but u solve base cases, sub problems and then u the go(n) or dp[n] AKA bottom up
+  it can be iterative in a way with using a max/prev state "it depend on prev state/s the latest max for ex.
+  in take it or leave it situation check if the leave it  requires an if condition, to generalize be careful if a choice requires an if condition
+  when u leave it make sure u update from the current state correctly
+  when u r checking on each element u don't need recursion 
+  if u want to check on sum or get some for segments, try accumlative arrays
 - in 2 players game : "using dp or .." if in the player turn can't make a move towards a losing state so he is in a losing state.
 - be careful TLE, MLE , long long 
 - consider the worest case "calculate the complexity carefully" * * ** * ** * * 
@@ -46,9 +53,17 @@ dedication
 
 ** graph **
 -try reconstracting the graph or building it if that helps
+*bfs vs dfs*
+- if the distance is fixed on edges then bfs is more convenient.
+- when u care about the level the node/s in, bfs is more convenient.
 - multiple rats on distination try bfs from each rat start node
 - min/max spanning tree? DisjointSets kruskal
 -** verify before u discard a sol **
+
+
+**BST TREE**
+reverse inorder traversal if u need summation try to use public or passed by referace accumilator ex. " int sum "
+
 
 **counting **
 - just try multipling more than max or min it's probably more ******general ********
@@ -62,7 +77,7 @@ or categories some cases " divide and conquer "
 
 
 *****************Writing****************************
-
+- if you used INT_MAX be careful "intermediate overflow"
 - if u have a templete use it like "bfs func"
 - if (x > nb) x -= nb; becarful if "x" can't be -ve
 - int x=(int)((t+EPS)*100);//work in integer domain if u can (he want 2 dig after the desimal point)
@@ -92,9 +107,10 @@ dont forget () in equation "if needed"
 
 ***** debug with printing after few moments of tracing ******	
 	when you are debuging trace each line carefully 
+	concretly otherwise you are just wasting time
 	check  "bounderies and tricky cases"
 	large output (might be)--> Max_int? or overflow ?
-- never quite ***if u still have time try to optimize after submiting brute force *** 
+     
 
 wrong answer repeat
 
@@ -103,7 +119,7 @@ wrong answer repeat
 
 
 
-
+     
 
 
 
