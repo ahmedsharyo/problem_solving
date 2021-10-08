@@ -30,12 +30,14 @@ dedication
   when u leave it make sure u update from the current state correctly
   when u r checking on each element u don't need recursion 
   if u want to check on sum or get some for segments, try accumlative arrays
+  if ret can be -1 loop over dp[] set it to INT_MAX
 - in 2 players game : "using dp or .." if in the player turn can't make a move towards a losing state so he is in a losing state.
 - be careful TLE, MLE , long long 
 - consider the worest case "calculate the complexity carefully" * * ** * ** * * 
 - ** verify before u discard a sol **
 
 **greedy **
+- if n>= 10^5 maybe it's greedy-able
 - think reversed
 - if greedy make ur own test cases "small - meduim - large(write a code if necessary)"
 - try the happy senarios first "simple - best case" then try to gerelize it on edge cases then normal cases
@@ -86,6 +88,7 @@ or categories some cases " divide and conquer "
 - check for intermediate overflow 
 - make sure every memory access (for loop, arr-access,arr[**SIZE + ^^5^^"safer"**]) is not out of boundries access
 - make sure use ***b***[**j**] ,***a***[*i*] properly
+- becarful go(j(*********(+/-)***********)1)
 - 0-based/ 1-based arr
 undefined-behavior(UB) or RTE:
 - X / 0; //UB 
