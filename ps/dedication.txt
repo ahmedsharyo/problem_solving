@@ -4,10 +4,10 @@ dedication
  * before thinking *
 
 - don't rush to the  thinking phase
-- read *****ALL**** the problem statment
+- read *****ALL**** the problem statment including test cases
+- ****trace all doable given test cases *****
 - take notes "clear" "spacific"  "concret"
 - *** the notes u took ***
-- trace all doable given test cases 
 - consider bounderies and tricky cases "concretly" ***write them***
 - make sure u have good understanding of the problem.
 - make sure u arn't solving a harder version of the problem .
@@ -50,7 +50,7 @@ dedication
 
 - if it seems like it have to be done in linear time try to think greedy "itreate once maybe back and forth if needed" 
 - think "two stacks"
-
+- **** if u r not sure whether ur solution is general or not u r wasting time most probably ****
 - ** verify before u discard a sol **
 
 ** graph **
