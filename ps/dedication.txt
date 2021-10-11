@@ -14,7 +14,9 @@ dedication
 - if there is a concept in the problem statment ex.(Geometric progression) make sure u understand it concretly=
 
 /thinking/
+- ****trace all doable given test cases concretly slowly reflect on them , look at explainations creat some explainations if none*****
 - *** the notes u took ***
+
 - don't rush to the coding phase
 
 ** brute force ** secon = 100M Operation
@@ -31,7 +33,9 @@ dedication
   when u r checking on each element u don't need recursion 
   if u want to check on sum or get some for segments, try accumlative arrays
   if ret can be -1 loop over dp[] set it to INT_MAX
-- in 2 players game : "using dp or .." if in the player turn can't make a move towards a losing state so he is in a losing state.
+  if dp[n][m] the time complexity O(n*2(if 2 >n) * {any forloop inside the scope "{}" recursive or iterative}) ) , memory O(n * m) usually
+  in 2 players game : "using dp or .. if in the player turn can't make a move towards a losing state so he is in a losing state
+  alice wants to "maxmize" her chance of winning bob wants to minimize hers 
 - be careful TLE, MLE , long long 
 - consider the worest case "calculate the complexity carefully" * * ** * ** * * 
 - ** verify before u discard a sol **
@@ -60,6 +64,7 @@ dedication
 - when u care about the level the node/s in, bfs is more convenient.
 - multiple rats on distination try bfs from each rat start node
 - min/max spanning tree? DisjointSets kruskal
+- if u need to traverse bottom up it's most probably dfs
 -** verify before u discard a sol **
 
 
