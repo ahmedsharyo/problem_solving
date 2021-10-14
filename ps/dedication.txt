@@ -36,6 +36,8 @@ dedication
   if dp[n][m] the time complexity O(n*2(if 2 >n) * {any forloop inside the scope "{}" recursive or iterative}) ) , memory O(n * m) usually
   in 2 players game : "using dp or .. if in the player turn can't make a move towards a losing state so he is in a losing state
   alice wants to "maxmize" her chance of winning bob wants to minimize hers 
+  some of subarrays -> accumlative array preprocessing may help
+  don't call states that are useless, more code more bugs
 - be careful TLE, MLE , long long 
 - consider the worest case "calculate the complexity carefully" * * ** * ** * * 
 - ** verify before u discard a sol **
@@ -65,6 +67,8 @@ dedication
 - multiple rats on distination try bfs from each rat start node
 - min/max spanning tree? DisjointSets kruskal
 - if u need to traverse bottom up it's most probably dfs
+- if it's subtree related solve the deap subtree and go up (return) "bottom up (dfs)"
+- if distance in a binary tree try to calculate distance from the right and left
 -** verify before u discard a sol **
 
 
