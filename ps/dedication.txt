@@ -5,7 +5,7 @@ dedication
 
 - don't rush to the  thinking phase
 - read *****ALL**** the problem statment including test cases
-- ****trace all doable given test cases *****
+- ****trace all tracable given test cases *******
 - take notes "clear" "spacific"  "concret"
 - *** the notes u took ***
 - consider bounderies and tricky cases "concretly" ***write them***
