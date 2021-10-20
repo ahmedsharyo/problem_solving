@@ -10,7 +10,7 @@ dedication
 - *** the notes u took ***
 - consider bounderies and tricky cases "concretly" ***write them***
 - make sure u have good understanding of the problem **
-- make sure u arn't solving another version of the problem .
+- make sure u arn't solving another version of the problem **
 - if there is a concept in the problem statment ex.(Geometric progression) make sure u understand it concretly=
 
 /thinking/
