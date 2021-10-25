@@ -75,6 +75,7 @@ BFS
 
 
 **BST TREE**
+Try to make use of the bst properties
 reverse inorder traversal if u need summation try to use public or passed by referace accumilator ex. " int sum "
 
 
