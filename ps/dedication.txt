@@ -100,6 +100,7 @@ or categories some cases " divide and conquer "
 - make sure every memory access (for loop, arr-access,arr[**SIZE + ^^5^^"safer"**]) is not out of boundries access
 - make sure use ***b***[**j**] ,***a***[*i*] properly
 - becarful go(j(*********(+/-)***********)1)
+- becareful n , m  use properly
 - 0-based/ 1-based arr
 undefined-behavior(UB) or RTE:
 - X / 0; //UB 
