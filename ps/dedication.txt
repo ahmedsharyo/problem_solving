@@ -61,11 +61,13 @@ dedication
 
 ** graph **
 -try reconstracting the graph or building it if that helps
+- min/max spanning tree? DisjointSets kruskal
 *bfs vs dfs*
+BFS
 - if the distance is fixed on edges then bfs is more convenient.
 - when u care about the level the node/s in, bfs is more convenient.
-- multiple rats on distination try bfs from each rat start node
-- min/max spanning tree? DisjointSets kruskal
+- multiple rats on distination try bfs from each rat start node, or want to reach all nodes " u start from each node" *(run one bfs)*
+
 - if u need to traverse bottom up it's most probably dfs
 - if it's subtree related solve the deap subtree and go up (return) "bottom up (dfs)"
 - if distance in a binary tree try to calculate distance from the right and left
