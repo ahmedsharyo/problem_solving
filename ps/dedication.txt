@@ -38,6 +38,7 @@ dedication
   alice wants to "maxmize" her chance of winning bob wants to minimize hers 
   some of subarrays -> accumlative array preprocessing may help
   don't call states that are useless, more code more bugs
+  in counting (&&) -> (*) , (||) -> (+) 
 - be careful TLE, MLE , long long 
 - consider the worest case "calculate the complexity carefully" * * ** * ** * * 
 - ** verify before u discard a sol **
