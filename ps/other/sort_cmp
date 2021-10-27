@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+struct s
+{
+   int x,y; 
+};
+bool cmp(s i, s j)
+{
+    return i.x < j.x;
+}
+
+int main()
+{
+    
+     s a[3];
+    int j =1;
+    for(int i = 0; i<3 ;i++)if(j&1)a[i].x = j++;
+    else a[i].x = 0,j++;
+    
+      for(int i = 0; i<3 ;i++)cout<<a[i].x<<endl;
+    
+    sort(a,a+3,cmp);
+    
+    for(int i = 0; i<3 ;i++)cout<<a[i].x<<endl;
+    
+}
