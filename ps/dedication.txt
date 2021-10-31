@@ -23,7 +23,7 @@ dedication
 - if n<13 (O!n) may pass
 - don't try to optimiz more if not necessary "speacially with online judge" if with person ask if there's more opt. communicate
 - trace all doable given test cases and consider bounderies and tricky cases
-- is dpable " accumlative recursive" //long long dp[20][1<<20]; u can use bitset<20>b  //up to 20 ->  [1<<20]
+- is dpable "can be devided to simpler sub-problems" //long long dp[20][1<<20]; u can use bitset<20>b  //up to 20 ->  [1<<20]
   if dp can u optimize it more "think of changing the state (val vs index)
   if u r counting what it will take at most  ex. how many moves at most maybe mini-max " ret = min(ret, max(go(_),go(__)) +1  ) 
   if iterative you consider similar state of recursive method but u solve base cases, sub problems and then u the go(n) or dp[n] AKA bottom up
