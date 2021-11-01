@@ -81,7 +81,7 @@ DFS
 **BST TREE**
 Try to make use of the bst properties
 reverse inorder traversal if u need summation try to use public or passed by referace accumilator ex. " int sum "
-
+- vs binary tree vs complete binary tree
 
 **counting **
 - just try multipling more than max or min it's probably more ******general ********
