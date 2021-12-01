@@ -1,7 +1,0 @@
---open--
-mysql -u root -p   
-
--- else --
-https://devhints.io/mysql
-
-
