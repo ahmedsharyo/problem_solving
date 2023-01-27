@@ -4,7 +4,7 @@ dedication
  * before thinking *
 
 - don't rush to the  thinking phase
-- read *****ALL**** the problem statment including test cases
+- read *****ALL**** the problem statment including test cases, constrains everything
 - ****trace all tracable given test cases *******
 - take notes "clear" "spacific"  "concret"
 - *** the notes u took ***
