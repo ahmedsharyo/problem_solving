@@ -14,7 +14,7 @@ dedication
 - if there is a concept in the problem statment ex.(Geometric progression) make sure u understand it concretly=
 
 /thinking/
-- ****trace all doable given test cases concretly slowly reflect on them , look at explainations creat some explainations if none*****
+- ****trace all doable given test cases concretly slowly reflect on them , look at explainations creat some explainations if there's none*****
 - *** the notes u took ***
 
 - don't rush to the coding phase
