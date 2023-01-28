@@ -105,6 +105,7 @@ undefined-behavior(UB) or RTE:
 - seg-faults/undefined behavior: may be arr out of boundries access (check stoping condition when dp "ex. f(i>=c.size())return 0;" )
 
 *after writing*
+review/trace ur code make sure it fits the problem
 don't use ld or ll unless it's necessary 
 return 1LL*a.s*b.h>1LL*b.s*a.h; "LL"
 ll x = INT_MAX+1; //intermediate overflow
