@@ -21,35 +21,22 @@ dedication
 
 ** brute force ** secon = 100M Operation
 - if n<13 (O!n) may pass
-- don't try to optimiz more if not necessary "speacially with online judge" if with person ask if there's more opt. communicate
-- trace all doable given test cases and consider bounderies and tricky cases
-- make sure u arn't tracing another version of the problem ***
 - is dpable "can be devided to simpler sub-problems" //long long dp[20][1<<20]; u can use bitset<20>b  //up to 20 ->  [1<<20]
   if dp can u optimize it more "think of changing the state (val vs index)
-  if u r counting what it will take at most  ex. how many moves at most maybe mini-max " ret = min(ret, max(go(_),go(__)) +1  ) 
-  if iterative you consider similar state of recursive method but u solve base cases, sub problems and then u the go(n) or dp[n] AKA bottom up
-  it can be iterative in a way with using a max/prev state "it depend on prev state/s the latest max for ex.
+  if iterative you consider similar state of recursive method but u solve base cases, sub problems and then u solve the go(n) or dp[n] "AKA bottom up"
   in take it or leave it situation check if the leave it  requires an if condition, to generalize be careful if a choice requires an if condition
   when u leave it make sure u update from the current state correctly
-  when u r checking on each element u don't need recursion 
-  if u want to check on sum or get some for segments, try accumlative arrays
-  if ret can be -1 loop over dp[] set it to INT_MAX
-  if dp[n][m] the time complexity O(n*2(if 2 >n) * {any forloop inside the scope "{}" recursive or iterative}) ) , memory O(n * m) usually
-  in 2 players game : "using dp or .. if in the player turn can't make a move towards a losing state so he is in a losing state
+  if dp[n][m] the time complexity O(n*2 * {any forloop inside the scope "{}" recursive or iterative}) ) , memory O(n * m) usually
+  in 2 players game : "using dp or .. if in the player turn the player can't make a move towards a losing state so he is in a losing state
   alice wants to "maxmize" her chance of winning bob wants to minimize hers 
-  some of subarrays -> accumlative array preprocessing may help
   don't call states that are useless, more code more bugs
   in counting (&&) -> (*) , (||) -> (+) 
   u can use bfs as dp iterative
-- be careful TLE, MLE , long long 
-- consider the worest case "calculate the complexity carefully" * * ** * ** * * 
-- ** verify before u discard a sol **
 
 **greedy **
 - if n>= 10^5 maybe it's greedy-able
 - think reversed
 - if greedy make ur own test cases "small - meduim - large(write a code if necessary)"
-- try the happy senarios first "simple - best case" then try to gerelize it on edge cases then normal cases
 - always be concrete
 - pre-process. > on the fly
 - inequality "equatons"
@@ -58,9 +45,7 @@ dedication
 - do you want iterate twice, more than three times on the array to check cond. ?
 
 - if it seems like it have to be done in linear time try to think greedy "itreate once maybe back and forth if needed" 
-- think "two stacks"
 - **** if u r not sure whether ur solution is general or not u r wasting time most probably ****
-- ** verify before u discard a sol **
 
 ** graph **
 -try reconstracting the graph or building it if that helps
@@ -76,7 +61,6 @@ DFS
 - if u need to traverse bottom up it's most probably dfs
 - if it's subtree related solve the deap subtree and go up (return) "bottom up (dfs)"
 - if distance in a binary tree try to calculate distance from the right and left
--** verify before u discard a sol **
 
 
 **BST TREE**
@@ -89,9 +73,13 @@ reverse inorder traversal if u need summation try to use public or passed by ref
 
 - if u r counting under multiple conditions try to seperate counting each case alone 
 or categories some cases " divide and conquer "
-
 - "avoid double counting"
+
+
+**ad hoc**
+- try the happy senarios first "simple - best case" then try to gerelize it on edge cases then normal cases
 -** verify before u discard a sol **
+- consider the worest case "calculate the complexity carefully" * * ** * ** * * 
 
 
 
